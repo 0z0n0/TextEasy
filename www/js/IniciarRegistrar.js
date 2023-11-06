@@ -179,8 +179,6 @@
     .catch(function(error) {
       console.error("Error al crear el usuario: " + error);
     });
-    
-      
       
   }
 

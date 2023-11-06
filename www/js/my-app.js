@@ -54,7 +54,7 @@ $$(document).on("page:init", function (e) {
 $$(document).on("page:init", '.page[data-name="index"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   /* app.dialog.alert("soy un alert") */
-
+  //fnCrearID();
   $$("#btnInicioSesion").on("click", fnIniciarSesion);
   $$("#btnMenu").on("click", fnMostrarMenu);
   $$("#btnCerrarSesion").on("click", fnCerrarSesion); 
@@ -109,6 +109,8 @@ $$(document).on("page:init", '.page[data-name="solicitud"]', function (e) {
 $$(document).on("page:init", '.page[data-name="solicitudNueva"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   /* console.log(e); */
+  mostrarVendedores();
+  $$("#btnConfirmarCompra").on("click", fnConfirmarCompra);
 });
 
 $$(document).on("page:init",'.page[data-name="solicitudBuscar"]',
@@ -299,30 +301,7 @@ function fnArmarIDCard() {
 /* CONFIRMAR PRODUCTO */
 
 
-function mostrarVendedores() {
-    
-  var db = firebase.firestore();
-  var perRef = db.collection("");
-  var selectElement = document.querySelector("#selectCargo");
-  /* var selectElement = $$("select #selectCargo"); */
-perRef.get().then(function(querySnapshot) {
-querySnapshot.forEach(function(doc) {
-  console.log("estoy dentro de la promesa")
-  console.log("data:" + doc.data().rol);
-  if (doc.data().rol !== "Admin") {
-    var option = document.createElement("option");
-    option.value = doc.data().rol;
-    option.textContent = doc.data().rol;
-    selectElement.appendChild(option);
-  }
-});
-})
-.catch(function(error) {
 
-console.log("Error: " , error);
-
-});
-}
 
 
 
