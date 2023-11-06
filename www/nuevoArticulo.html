@@ -1,0 +1,318 @@
+<!-- We don't need a full layout in this file because this page will be parsed with Ajax.  -->
+<div class="page bg-color-lime" data-name="nuevoArticulo">
+  <div class="navbar">
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="/solicitudNueva/" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="ios-only">Back</span>
+        </a>
+      </div>
+      <div class="title">nuevo Articulo</div>
+    </div>
+  </div>
+  <div class="page-content">
+    <div class="grid grid-cols-1 grid-gap">
+      <h2 class="block-title text-align-center">
+        <strong>NUEVA SOLICITUD</strong>
+      </h2>
+    </div>
+    <div class="list list-strong-ios list-dividers-ios inset-ios" id="producto">
+      <ul>
+        <li class="item-content item-input">
+          <div class="item-inner">
+            <div class="item-title item-label">Artículo</div>
+            <div class="item-input-wrap input-dropdown-wrap">
+              <select class="form-select" name="nuevoArticulo" aria-label="Disabled select example">
+                <option selected>Productos</option>
+                <option value="Babucha">Babucha</option>
+                <option value="Bandana">Bandana</option>
+                <option value="Bandera">Bandera</option>
+                <option value="Bermuda Cargo">Bermuda Cargo</option>
+                <option value="Bermuda Clásico">Bermuda Clásico</option>
+                <option value="Bermuda Joggins">Bermuda Joggins</option>
+                <option value="Bermuda Náutico">Bermuda Náutico</option>
+                <option value="Buzo">Buzo</option>
+                <option value="Camisa">Camisa</option>
+                <option value="Campera">Campera</option>
+                <option value="Campera doble">Campera doble</option>
+                <option value="Chaleco">Chaleco</option>
+                <option value="Chaleco Doble">Chaleco Doble</option>
+                <option value="Chaquetilla">Chaquetilla</option>
+                <option value="Chomba">Chomba</option>
+                <option value="Chomba Mangas Largas">Chomba Mangas Largas</option>
+                <option value="Cuellera">Cuellera</option>
+                <option value="Delantal">Delantal</option>
+                <option value="Mantel">Mantel</option>
+                <option value="Musculosa">Musculosa</option>
+                <option value="Pantalón Cargo">Pantalón Cargo</option>
+                <option value="Pantalón Clásico">Pantalón Clásico</option>
+                <option value="Pantalón Joggins">Pantalón Joggins</option>
+                <option value="Pantalón Náutico">Pantalón Náutico</option>
+                <option value="Remera">Remera</option>
+                <option value="Remera Mangas Largas">Remera Mangas Largas</option>
+              </select>
+            </div>
+          </div>
+        </li>
+
+        <li class="item-content item-input">
+          <div class="item-inner">
+            <div class="item-title item-label">Cuerpo</div>
+            <div class="item-input-wrap">
+              <input name="nuevoArticuloCuerpo" type="text" placeholder="Cuerpo:Color" />
+              <span class="input-clear-button"></span>
+            </div>
+          </div>
+        </li>
+        <div class="grid grid-cols-2 grid-gap">
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Pechera</div>
+              <div class="item-input-wrap">
+                <input name="nuevoArticuloPechera" type="text" placeholder="Pechera:Color" />
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Canesú</div>
+              <div class="item-input-wrap">
+                <input name="nuevoArticuloCanesu" type="text" placeholder="Canesú:Color" />
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Manga</div>
+              <div class="item-input-wrap">
+                <input name="nuevoArticuloManga" type="text" placeholder="Manga:Color" />
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Puño</div>
+              <div class="item-input-wrap">
+                <input name="nuevoArticuloPunio" type="text" placeholder="Puño:Color" />
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Cuello</div>
+              <div class="item-input-wrap">
+                <input name="nuevoArticuloCuello" type="text" placeholder="Cuello:Color" />
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+
+          <li class="item-content item-input">
+            <div class="item-inner">
+              <div class="item-title item-label">Vivo</div>
+              <div class="item-input-wrap">
+                <input name="nuevoArticuloVivo" type="text" placeholder="Vivo:Color" />
+                <span class="input-clear-button"></span>
+              </div>
+            </div>
+          </li>
+
+        </div>
+      </ul>
+
+    </div>
+    <hr>
+
+    <div class="margin-horizontal ">
+      <h4 class="block-title text-align-center">
+        <strong>BORDADO</strong>
+      </h4>
+      <div class="grid grid-cols-4 grid-gap " id="bordado">
+        <label class="checkbox"><input type="checkbox" name="BordadoFrIzq"><i
+            class="item-checkbox item-content"></i>Fr Izq</label>
+        <label class="checkbox"><input type="checkbox" name="BordadoFrDer"><i
+            class="item-checkbox item-content"></i>Fr Der</label>
+        <label class="checkbox"><input type="checkbox" name="BordadoEspalda"><i
+            class="item-checkbox item-content"></i>Espalda</label>
+        <label class="checkbox"><input type="checkbox" name="BordadoBajoNuca"><i
+            class="item-checkbox item-content"></i>Bajo Nuca</label>
+        <label class="checkbox"><input type="checkbox" name="BordadoCintura"><i
+            class="item-checkbox item-content"></i>Cintura</label>
+        <label class="checkbox"><input type="checkbox" name="BordadoMangaDer"><i
+            class="item-checkbox item-content"></i>Manga Der</label>
+        <label class="checkbox"><input type="checkbox" name="BordadoMangaIzq"><i
+            class="item-checkbox item-content"></i>Manga izq</label>
+      </div>
+
+
+      <div class="grid grid-cols-1 grid-gap item-inner text-align-center">
+        
+        <textarea name="comentarioBordado" class="bg-color-white" placeholder="Comentario Bordado"></textarea>
+      </div>
+    </div>
+    <hr>
+
+    <div class="margin-horizontal">
+      <h4 class="block-title text-align-center">
+        <strong>ESTAMPADO</strong>
+      </h4>
+      <div class="grid grid-cols-4 grid-gap " id="estampado">
+        <label class="checkbox"><input type="checkbox" name="EstampaFrIzq"><i
+            class="item-checkbox item-content"></i>Fr Izq</label>
+        <label class="checkbox"><input type="checkbox" name="EstampaFrDer"><i
+            class="item-checkbox item-content"></i>Fr Der</label>
+        <label class="checkbox"><input type="checkbox" name="EstampaEspalda"><i
+            class="item-checkbox item-content"></i>Espalda</label>
+        <label class="checkbox"><input type="checkbox" name="EstampaBajoNuca"><i
+            class="item-checkbox item-content"></i>Bajo Nuca</label>
+        <label class="checkbox"><input type="checkbox" name="EstampaCintura"><i
+            class="item-checkbox item-content"></i>Cintura</label>
+        <label class="checkbox"><input type="checkbox" name="EstampaMangaDer"><i
+            class="item-checkbox item-content"></i>Manga Der</label>
+        <label class="checkbox"><input type="checkbox" name="EstampaMangaIzq"><i
+            class="item-checkbox item-content"></i>Manga izq</label>
+      </div>
+
+
+      <div class="grid grid-cols-1 grid-gap item-inner text-align-center">
+        <textarea  name="comentarioEstampado"  class="bg-color-white" placeholder="Comentario Estampa"></textarea>
+      </div>
+    </div>
+    <hr>
+
+    <div class="margin-horizontal">
+      <h4 class="block-title text-align-center">
+        <strong>TALLES</strong>
+      </h4>
+      <div id="talles" class="grid grid-cols-4 grid-gap ">
+        
+        <div class="item-inner">
+          <div class="item-title item-label">XS</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="xs"  type="number" placeholder="0">
+          </div>
+        </div>
+        
+        <div class="item-inner">
+          <div class="item-title item-label">S</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="s"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">M</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="m"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">L</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="l"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">XL</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="xl"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">2XL</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="2xl"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">3XL</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="3xl"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">4XL</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="4xl"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">5XL</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="5xl"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">6XL</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="6xl"  type="number" placeholder="0">
+          </div>
+        </div>
+
+        <div class="item-inner">
+          <div class="item-title item-label">Especial</div>
+          <div class="item-input-wrap bg-color-white text-align-center" style="width: 50%;">
+            <input name="especial"  type="number" placeholder="0">
+          </div>
+        </div>
+        
+
+        
+      </div>
+
+
+      <div class="grid grid-cols-1 grid-gap item-inner text-align-center">
+        <div class="item-title item-label margin-left">Comentario Talles</div>
+        <textarea class="bg-color-white" placeholder="Comentario Talles"></textarea>
+      </div>
+    </div>
+    <hr>
+    <div class="grid grid-cols-2 grid-gap item-inner margin-horizontal margin-top">
+      
+      <div class="item-inner">
+        <h3 class="item-title item-label">Cantidad</h3>
+        <div class="item-input-wrap">
+          <input name="nuevoArticuloCantidad" type="number" placeholder="0" />
+          <span class="input-clear-button"></span>
+        </div>
+      </div>
+
+      <div class="item-inner">
+        <h3 class="item-title item-label">Precio Unitario</h3>
+        <div class="item-input-wrap">
+          <input name="nuevoArticuloPrecioUnitario" type="number" placeholder="$" />
+          <span class="input-clear-button"></span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="grid grid-cols-2 grid-gap item-inner text-align-center">
+      <h2 class="block-title block-title-large text-align-center">
+        <strong>TOTAL</strong>
+      </h2>
+      <h2 name="precioTotal" class="block-title block-title-large text-align-center text-color-red">
+        <strong  >$0000</strong>
+      </h2>
+    </div> 
+    <div class="grid grid-cols-1 grid-gap item-inner text-align-center margin-horizontal">
+      <button id="btnnuevoArticuloOK" class="button button-raised button-fill ">OK</button>
+    </div>
+  </div>
+</div>
