@@ -4,6 +4,7 @@ detallesProducto,
 cantidadTotal,
 total,
 precioUnitario,
+ValorTotalDelPedido = 0,
 precio;
 
 productosSeleccionados = [];
@@ -129,6 +130,10 @@ function confirmar() {
       productoSeleccionados(productoSeleccionado, cantidadTotal, total);
       mainView.router.back();
       cantidadTotal = 0
+      ValorTotalDelPedido += parseFloat(total);
+      console.log("El precio total es de: $"+ValorTotalDelPedido)
+      $$("#ValorTotalDelPedido").append(`<h3 >$${ValorTotalDelPedido}</h3>	`)
+
     },
     function () {
       // Esto se ejecutará cuando se cancele el diálogo
@@ -136,6 +141,7 @@ function confirmar() {
     }
   );
 }
+
 
 function crearCard() {
 cardId = fnArmarIDCard();

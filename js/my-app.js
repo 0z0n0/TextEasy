@@ -130,6 +130,7 @@ $$(document).on("page:init", '.page[data-name="solicitudNueva"]', function (e) {
 $$(document).on("page:init",'.page[data-name="solicitudBuscar"]',function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
     /* console.log(e); */
+    mostrarSolicitudesDesdeLaBD()
   }
 );
 
