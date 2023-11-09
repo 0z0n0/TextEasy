@@ -58,6 +58,7 @@ $$(document).on("page:init", '.page[data-name="index"]', function (e) {
   $$("#btnInicioSesion").on("click", fnIniciarSesion);
   $$("#btnMenu").on("click", fnMostrarMenu);
   $$("#btnCerrarSesion").on("click", fnCerrarSesion); 
+  
  
 
   /* var db = firebase.firestore();
@@ -126,194 +127,25 @@ $$(document).on("page:init", '.page[data-name="solicitudNueva"]', function (e) {
     });
 });
 
-$$(document).on("page:init",'.page[data-name="solicitudBuscar"]',
-  function (e) {
+$$(document).on("page:init",'.page[data-name="solicitudBuscar"]',function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
     /* console.log(e); */
   }
 );
 
-$$(document).on("page:init", '.page[data-name="nuevoArticulo"]', function (e) {
-  // Do something here when page with data-name="about" attribute loaded and initialized
-
-  AdicionarCaracteristasProducto();
+$$(document).on("page:init",'.page[data-name="nuevoArticulo"]',function (e) {
+    // Do something here when page with data-name="about" attribute loaded and initialized
+    /* console.log(e); */
+    AdicionarCaracteristasProducto();
+    
   /* console.log(e); */
+  getmensaje()
   $$("#btnnuevoArticuloOK").on("click", confirmar);
-
+  }
+);
   /* FUNCTIONS */
 
-  var 
-    productoSeleccionado,
-    detallesProducto,
-    cantidadTotal,
-    total,
-    precio;
-
-  function AdicionarCaracteristasProducto() {
-    $$(".page-content").change(function () {
-      productoSeleccionado = $$("select[name='nuevoArticulo']").val();
-      console.log("El Artículo seleccionado es: " + productoSeleccionado);
-      detallesProducto = {
-        cuerpo: $$("input[name='nuevoArticuloCuerpo']").val(),
-        pechera: $$("input[name='nuevoArticuloPechera']").val(),
-        canesu: $$("input[name='nuevoArticuloCanesu']").val(),
-        manga: $$("input[name='nuevoArticuloManga']").val(),
-        punio: $$("input[name='nuevoArticuloPunio']").val(),
-        cuello: $$("input[name='nuevoArticuloCuello']").val(),
-        vivo: $$("input[name='nuevoArticuloVivo']").val(),
-      };
-      //console.log("Detalles del producto: ", detallesProducto);
-      //console.log("Detalles del cuerpo: ", detallesProducto.cuerpo);
-    });
-
-    valoresSeleccionadosBordado = [];
-    AgregarBordadoOEstamapdo(
-      $$("#bordado input[type='checkbox']"),
-      valoresSeleccionadosBordado,
-      "textarea[name='comentarioBordado']"
-    );
-
-    valoresSeleccionadosEstampa = [];
-    AgregarBordadoOEstamapdo(
-      $$("#estampado input[type='checkbox']"),
-      valoresSeleccionadosEstampa,
-      "textarea[name='comentarioEstampado']"
-    );
-
-    CalcularPrecioTotal();
-  }
-
-  function AgregarBordadoOEstamapdo(
-    elementos,
-    valoresSeleccionados,
-    comentarioElemento
-  ) {
-    elementos.change(function () {
-      const nombreCheckbox = $$(this).attr("name");
-
-      if ($$(this).is(":checked")) {
-        valoresSeleccionados.push(nombreCheckbox);
-      } else {
-        const index = valoresSeleccionados.indexOf(nombreCheckbox);
-        if (index !== -1) {
-          valoresSeleccionados.splice(index, 1);
-        }
-      }
-      console.log("Valores seleccionados: " + valoresSeleccionados.join(", "));
-      comentario = $$(comentarioElemento).val();
-      console.log("Comentario: " + comentario);
-    });
-  }
-
-  /* ---------- CALCULAR CANTIDAD Y PRECIO ---------- */
-
-  const CantidadPorTalle = {};
-
-  function CalcularPrecioTotal() {
-    $$("#talles input[type='number']").on("input", function () {
-      var talle = $$(this).attr("name");
-
-      var cantidad = parseInt($$(this).val()) || 0;
-
-      // Almacenar la cantidad en el objeto CantidadPorTalle
-      CantidadPorTalle[talle] = cantidad;
-      actualizarPrecioTotal(); // Calcula el precio total cuando cambia la cantidad
-    });
-
-    // Manejar cambios en el precio unitario
-    $$("input[name='nuevoArticuloPrecioUnitario']").on("input", function () {
-      actualizarPrecioTotal(); // Calcula el precio total cuando cambia el precio unitario
-    });
-  }
-
-  function actualizarPrecioTotal() {
-    var precioUnitario = parseFloat(
-      $$("input[name='nuevoArticuloPrecioUnitario']").val()
-    );
-    cantidadTotal = sumarValores(CantidadPorTalle);
-    total = cantidadTotal * precioUnitario;
-    $$("h2[name='precioTotal']").text("$" + total);
-  }
-
-  // Función para sumar los valores en el objeto valoresCampos
-  function sumarValores(valores) {
-    let cantidadTotal = 0;
-    for (const talle in valores) {
-      cantidadTotal += valores[talle];
-    }
-    $$("input[name='nuevoArticuloCantidad']").val(cantidadTotal);
-    /* cantidadTotal = 0; // Restablecer cantidadTotal a cero */
-    return cantidadTotal;
-  }
-
-  /* ---------- FIN CALCULAR CANTIDAD Y PRECIO ---------- */
-
-  /* CONFIRMAR PRODUCTO */
-
-  function confirmar() {
-    app.dialog.confirm(
-      "¿Desea agregar el producto a la solicitud?",
-      "CONFIRMACIÓN",
-      function () {
-        crearCard();
-        // Esto se ejecutará cuando se confirme el diálogo
-        console.log("Confirmado");
-
-        mainView.router.back();
-      },
-      function () {
-        // Esto se ejecutará cuando se cancele el diálogo
-        console.log("Cancelado");
-      }
-    );
-  }
-
-  function crearCard() {
-    cardId = fnArmarIDCard();
-    console.log("El cardCounter es: " + cardId);
-
-    var estructuraHtml = `
-          <div class="card" id="${cardId}">
-            <div class="card-header">${productoSeleccionado}</div>
-            <div class="card-content card-content-padding">
-              <div class="list">
-                <ul>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-inner">
-                        <div class="item-title">Cantidad: ${cantidadTotal}</div>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="item-content">
-                      <div class="item-inner">
-                        <div class="item-title">SubTotal: ${total}</div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        `;
-
-    $$("#solicitudNuevaProductos").append(estructuraHtml);
-  }
-});
-var cardCounter = 1;
-console.log("La variable init CardCounter es:" + cardCounter);
-
-function fnArmarIDCard() {
-  const cardId = "producto" + cardCounter; // Genera el ID dinámico
-  cardCounter++;
-  console.log("Card counter dentro de la funcion es: " + cardCounter);
-  return cardId;
-}
-
-/* CONFIRMAR PRODUCTO */
-
-
+ 
 
 
 

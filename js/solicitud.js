@@ -59,18 +59,57 @@ function incrementarId() {
     });
 }
 
-
-
-
-
-
 function fnConfirmarCompra(vendedor) {
+  console.log("me hicieron click");
+  // Muestra el preloader
+  app.preloader.show('my-preloader');
+
+  // Obtén el ID y luego incrementa
+  obtenerValorId()
+    .then((id) => {
+      // Ahora que tienes el ID, puedes usarlo
+      var db = firebase.firestore();
+      var docRef = db.collection("solicitud").doc(id.toString());
+      var datosEmpresa = {
+        nombreEmpresa: $$("#solicitudNuevaEmpresa").val(),
+        fecha: $$("#solicitudNuevaFecha").val(),
+        localidad: $$("#solicitudNuevaLocalidad").val(),
+        direccion: $$("#solicitudNuevaDireccion").val(),
+        telefono: $$("#solicitudNuevaTelefono").val(),
+        mail: $$("#solicitudNuevaEmail").val(),
+        vendedor: vendedor,
+        producto: productosSeleccionados,
+      };
+      productosSeleccionados = [];
+      // Llama a la función incrementarId
+      return incrementarId()
+        .then(() => {
+          // Agregar datos a Firestore
+          return docRef.set(datosEmpresa);
+        });
+    })
+    .then(() => {
+      // Oculta el preloader
+      app.preloader.hide('my-preloader');
+      console.log("Pedido Agregado con éxito.");
+    })
+    .catch((error) => {
+      // Oculta el preloader en caso de error
+      app.preloader.hide('my-preloader');
+      console.error("Error al agregar el pedido:", error);
+    });
+}
+
+
+
+
+/* function fnConfirmarCompra(vendedor) {
   console.log("me hicieron click")
   // Muestra el preloader
   app.preloader.show('my-preloader');
 
   // Obtén el ID y luego incrementa
-  
+      producto = productosSeleccionados;
       obtenerValorId()
         .then((id) => {
           // Ahora que tienes el ID, puedes usarlo
@@ -84,6 +123,9 @@ function fnConfirmarCompra(vendedor) {
             telefono: $$("#solicitudNuevaTelefono").val(),
             mail: $$("#solicitudNuevaEmail").val(),
             vendedor: vendedor,
+            producto: producto.producto,
+            cantidadTotal: producto.cantidadTotal,
+            precioSubTotal: producto.precioSubTotal,
           };
 
           // Llama a la función incrementarId
@@ -104,7 +146,7 @@ function fnConfirmarCompra(vendedor) {
           console.error("Error al agregar el pedido:", error);
         });
     
-}
+} */
 
 
   
