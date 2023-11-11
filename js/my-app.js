@@ -23,12 +23,16 @@ var app = new Framework7({
     { path: "/menuVendedor/", url: "menuVendedor.html" }, 
 
     { path: "/presupuesto/", url: "presupuesto.html" },
+
     { path: "/solicitud/", url: "solicitud.html" },
     { path: "/solicitudNueva/", url: "solicitudNueva.html" },
     { path: "/nuevoArticulo/", url: "nuevoArticulo.html" },
     { path: "/solicitudBuscar/", url: "solicitudBuscar.html" },
+    { path: "/productoEncontrado/", url: "productoEncontrado.html" },
+
     { path: "/ordenCorte/", url: "ordenCorte.html" },
     { path: "/configuraciones/", url: "configuraciones.html" },
+
     { path: "/rediccionar/", url: "rediccionar.html" },
     
 
@@ -131,6 +135,17 @@ $$(document).on("page:init",'.page[data-name="solicitudBuscar"]',function (e) {
     // Do something here when page with data-name="about" attribute loaded and initialized
     /* console.log(e); */
     mostrarSolicitudesDesdeLaBD()
+    
+    $$("#resultadosSolicitudes").on("click",".card", function () {
+      var id = $$(this).attr("id");
+      productoEncontrado(id);
+    });
+
+    $$('#TerminoBuscado').on('input', function () {
+      var searchTerm = $$(this).val();
+      mostrarSolicitudesDesdeLaBDConFiltro(searchTerm);
+    });
+    
   }
 );
 
