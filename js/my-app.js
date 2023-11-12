@@ -23,6 +23,7 @@ var app = new Framework7({
     { path: "/menuVendedor/", url: "menuVendedor.html" }, 
 
     { path: "/presupuesto/", url: "presupuesto.html" },
+    { path: "/presupuestosBuscar/", url: "presupuestosBuscar.html" },
 
     { path: "/solicitud/", url: "solicitud.html" },
     { path: "/solicitudNueva/", url: "solicitudNueva.html" },
@@ -87,6 +88,15 @@ $$(document).on("page:init", '.page[data-name="about"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   /* console.log(e); */
 });
+$$(document).on("page:init", '.page[data-name="presupuesto"]', function (e) {
+  // Do something here when page with data-name="about" attribute loaded and initialized
+  /* console.log(e); */
+  
+  $$("#PresupuestoCantidad , #PresupuestoPrecioUnitario" ).on("input", function () {
+    MostrarSubTotal();
+});
+});
+
 
 $$(document).on("page:init", '.page[data-name="registro"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized

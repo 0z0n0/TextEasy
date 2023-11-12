@@ -13,5 +13,116 @@
     </div>
     <div class="page-content">
         <h2>presupuesto</h2>
+
+        <!-- Cabecera -->
+
+        <div class="list list-strong-ios list-dividers-ios inset-ios">
+            <ul>
+              <li class="item-content item-input item-input-outline">
+                <div class="item-media">
+                  <i class="icon demo-list-icon"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">Empresa:</div>
+                  <div class="item-input-wrap">
+                    <input type="text" id="PresupuestoNombreEmpresa">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>              
+              <li class="item-content item-input item-input-outline">
+                <div class="item-media">
+                  <i class="icon demo-list-icon"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">E-mail</div>
+                  <div class="item-input-wrap">
+                    <input type="email" id="PresupuestoEmail">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+              
+              <li class="item-content item-input item-input-outline">
+                <div class="item-media">
+                  <i class="icon demo-list-icon"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">Telefono</div>
+                  <div class="item-input-wrap">
+                    <input type="tel" id="PresupuestoTelefono">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input item-input-outline">
+                <div class="item-media">
+                  <i class="icon demo-list-icon"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">Fecha</div>
+                  <div class="item-input-wrap">
+                    <input type="date" id="PresupuestoFecha">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+              <li class="item-content item-input item-input-outline">
+                <div class="item-media">
+                  <i class="icon demo-list-icon"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">Vendedor</div>
+                  <div class="item-input-wrap">
+                    <input type="text" id="PresupuestoNombreVendedor">
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div>
+              </li>
+              <!-- COMENTARIO -->
+              <!-- <li class="item-content item-input item-input-outline">
+                <div class="item-media">
+                  <i class="icon demo-list-icon"></i>
+                </div>
+                <div class="item-inner">
+                  <div class="item-title item-label">Bio</div>
+                  <div class="item-input-wrap">
+                    <textarea class="resizable" placeholder="Bio"></textarea>
+                    <span class="input-clear-button"></span>
+                  </div>
+                </div> -->
+              </li>
+            </ul>
+          </div>
+
+        <!-- fin Cabecera -->
+
+        
+      
+          <!-- Tabla de Productos -->          
+    <div class="data-table">
+      <table>
+        <thead>
+          <tr>
+            <th class="label-cell">Producto</th>
+            <th class="numeric-cell">Descripción</th>
+            <th class="numeric-cell">Cantidad</th>
+            <th class="numeric-cell">Precio Unitario</th>
+            <th class="numeric-cell">SubTotal</th>
+          </tr>
+        </thead>       
+        <tbody id="tablaProductos">
+            <!-- Aquí se agregarán las filas de productos dinámicamente -->
+          </tbody>
+      </table>
+
+      <h2 class="text-align-center block-title text-color-green" id="presupuestoTotal"></h2>
+      
+          <!-- Botones -->
+          <div class="block">
+            <button class="margin-bottom" onclick="agregarFila()">Agregar Fila</button>
+            <button onclick="confirmarPresupuesto()">Confirmar Presupuesto</button>
+          </div>
+        </div>
     </div>
 </div>
