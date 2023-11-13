@@ -94,12 +94,6 @@ function productoEncontrado(id) {
           productosHtml += "</ul>";
           
           $$("#productoEncontradoProductos").html(productosHtml);
-          
-        
-
-      
-
-          
         });
 
         // Navegar a la nueva página

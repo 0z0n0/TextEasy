@@ -35,7 +35,7 @@ function mostrarPresupuestosDesdeLaBD() {
               </div>
             </a>`;
   
-          $$("#resultadosPresupuestos").append(estructuraHtml);
+          $$("#presupuestoEncontradoProductos").append(estructuraHtml);
         });
       })
       .catch(function (error) {
@@ -144,7 +144,7 @@ function mostrarPresupuestosDesdeLaBD() {
               </div>
             </a>`;
   
-            $$("#resultadosPresupuestos").append(estructuraHtml);
+            $$("#presupuestoEncontradoProductos").append(estructuraHtml);
           }
         });
       })

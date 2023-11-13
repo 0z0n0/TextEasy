@@ -92,6 +92,7 @@ function fnConfirmarCompra(vendedor) {
     .then(() => {
       // Oculta el preloader
       app.preloader.hide('my-preloader');
+      mainView.router.back();
       console.log("Pedido Agregado con éxito.");
     })
     .catch((error) => {

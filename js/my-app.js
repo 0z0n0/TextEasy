@@ -22,8 +22,10 @@ var app = new Framework7({
     { path: "/menuAdmin/", url: "menuAdmin.html" },
     { path: "/menuVendedor/", url: "menuVendedor.html" }, 
 
+    
     { path: "/presupuesto/", url: "presupuesto.html" },
-    { path: "/presupuestosBuscar/", url: "presupuestosBuscar.html" },
+    { path: "/presupuestoNuevo/", url: "presupuestoNuevo.html" },
+    { path: "/presupuestoBuscar/", url: "presupuestoBuscar.html" },
 
     { path: "/solicitud/", url: "solicitud.html" },
     { path: "/solicitudNueva/", url: "solicitudNueva.html" },
@@ -87,6 +89,22 @@ $$(document).on("page:init", '.page[data-name="index"]', function (e) {
 $$(document).on("page:init", '.page[data-name="about"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized
   /* console.log(e); */
+});
+
+$$(document).on("page:init", '.page[data-name="presupuestoBuscar"]', function (e) {
+  // Do something here when page with data-name="about" attribute loaded and initialized
+  /* console.log(e); */
+  mostrarPresupuestosDesdeLaBD()
+
+  $$("#presupuestoEncontradoProductos").on("click",".card", function () {
+    var id = $$(this).attr("id");
+    presupuestoEncontrado(id);
+  });
+
+  $$('#PresupuestoTerminoBuscado').on('input', function () {
+    var searchTerm = $$(this).val();
+    mostrarPresupuestosDesdeLaBDConFiltro(searchTerm);
+  });
 });
 $$(document).on("page:init", '.page[data-name="presupuesto"]', function (e) {
   // Do something here when page with data-name="about" attribute loaded and initialized

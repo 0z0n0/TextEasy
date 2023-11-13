@@ -8,51 +8,29 @@
             <span class="ios-only">Back</span>
             </a>
         </div>
-        <div class="title">About Framework7</div>
+        <div class="title">BUSCAR PRESUPUESTO</div>
         </div>
     </div>
     <div class="page-content">
-        <div class="block-title">Información del Presupuesto</div>
-    <div class="list">
-      <ul>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Nombre de la Empresa:</div>
-              <div class="item-after" id="presupuestoEncontradoNombreEmpresa"></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Fecha:</div>
-              <div class="item-after" id="presupuestoEncontradoFecha"></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Teléfono:</div>
-              <div class="item-after" id="presupuestoEncontradoTelefono"></div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="item-content">
-            <div class="item-inner">
-              <div class="item-title">Correo Electrónico:</div>
-              <div class="item-after" id="presupuestoEncontradoMail"></div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
+      <h2 class="block-title text-align-center" ><strong>BUSCAR SOLICITUD</strong> </h2>
 
-    <div class="block-title">Productos</div>
-    <div class="list" id="presupuestoEncontradoProductos">
-      <!-- Aquí se mostrarán los productos -->
-    </div>
+
+      <div class="searchbar">
+        <form data-search-container=".list" data-search-item="li" class="searchbar">
+          <div class="searchbar-inner">
+            <div class="searchbar-input-wrap">
+              <input id="PresupuestoTerminoBuscado" type="search" placeholder="Buscar">
+              <i class="searchbar-icon"></i>
+              <span class="input-clear-button"></span>
+            </div>
+            <span class="searchbar-disable-button">Cancel</span>
+          </div>
+        </form>
+      </div>
+    
+      <div><h2>RESULTADOS</h2></div>
+    <div class="list" id="presupuestoEncontradoProductos"></div>
+
+
   </div>
     </div>
