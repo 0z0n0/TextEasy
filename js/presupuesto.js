@@ -84,7 +84,8 @@ function confirmarPresupuesto() {
           });
       })
       .then(() => {
-        app.preloader.hide('my-preloader');  // Oculta el preloader
+        app.preloader.hide('my-preloader');
+        mainView.router.back();  // Oculta el preloader
         console.log("Presupuesto agregado con éxito.");
       })
       .catch((error) => {

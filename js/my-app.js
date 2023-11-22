@@ -127,6 +127,8 @@ $$(document).on("page:init", '.page[data-name="configuraciones"]', function (e) 
   // Do something here when page with data-name="about" attribute loaded and initialized
   /* console.log(e); */
   $$("#btncongiguracionNuevoCargo").on("click", generarCargo);
+  mostrarUsuarios();
+  mostrarCargo()
 
 });
 

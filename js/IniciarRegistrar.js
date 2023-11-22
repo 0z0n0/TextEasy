@@ -6,52 +6,10 @@
   rolUsuario,
   valorSeleccionado;
 
-
-/*   function fnIniciarSesion() {
-    email = $$("#loginEmail").val();
-    clave = $$("#loginClave").val();
-
-    if (email != "" && clave != "") {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, clave)
-        .then((userCredential) => {
-          // Signed in
-          var user = userCredential.user;
-
-          console.log("Bienvenid@!!! " + email);
-          rolUsuario = "";
-          rolUsuario = obtenerRolUsuarioPorEmail(email);
-          
-          if(rolUsuario == "Vendedor"){
-            console.log("rol Vendedor, redireccionando")
-            mainView.router.navigate("/menuVendedor/");
-          // crear un menu con los botones que solo puede ver Vendedor
-          }else if(rolUsuario == "Admistrador"){
-            console.log("rol administrador, redireccionando")
-            mainView.router.navigate("/menuAdministrador/");
-          // crear un menu con los botones que solo puede ver Vendedor
-          }else if(rolUsuario == "Admin"){
-            console.log("rol Admin, redireccionando")
-          mainView.router.navigate("/menuAdmin/");
-        // crear un menu con los botones que solo puede ver Vendedor
-          }
-          //mainView.router.navigate("/menu/");
-          
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-
-          console.error(errorCode);
-          console.error(errorMessage);
-        });
-    }
-  } */
-
   async function fnIniciarSesion() {
     email = $$("#loginEmail").val();
     clave = $$("#loginClave").val();
+    app.preloader.show('my-preloader');
   
     if (email != "" && clave != "") {
       try {
@@ -61,21 +19,25 @@
         console.log("Bienvenid@!!! " + email);
         
         rolUsuario = await obtenerRolUsuarioPorEmail(email);
-  
+        
         if (rolUsuario == "Vendedor") {
+          app.preloader.hide('my-preloader');
           console.log("rol Vendedor, redireccionando")
           mainView.router.navigate("/menuVendedor/");
         } else if (rolUsuario == "Administrador") {
+          app.preloader.hide('my-preloader');
           console.log("rol administrador, redireccionando")
           mainView.router.navigate("/menuAdministrador/");
         } else if (rolUsuario == "Admin") {
+          app.preloader.hide('my-preloader');
           console.log("rol Admin, redireccionando")
           mainView.router.navigate("/menuAdmin/");
         }
       } catch (error) {
         var errorCode = error.code;
         var errorMessage = error.message;
-  
+        app.preloader.hide('my-preloader');
+        $$("#errorAlIniciasSesion").html("Ups, hay problemas para iniciar sesion.")
         console.error(errorCode);
         console.error(errorMessage);
       }
@@ -113,6 +75,23 @@
     }
     
   }
+  
+  function fnCerrarSesion() {
+    firebase.auth().signOut().then(function() {
+      console.log("Sesión cerrada con éxito.");
+      mainView.router.navigate("/index/");
+    }).catch(function(error) {
+      console.error("Error al cerrar sesión: " + error);
+    });
+}
+
+function fnMostrarMenu(){
+  if (firebase.auth().currentUser) {
+    mainView.router.navigate("/menu"+rolUsuario+"/");
+  }else{
+    console.log("No ha iniciado sesion");
+  }
+}
 
   function mostrarCargo() {
     
@@ -182,25 +161,8 @@
       
   }
 
-  /* function obtenerRolUsuarioPorEmail(mail){
-    var db = firebase.firestore();
-    var empleadoRef = db.collection("empleados").doc(mail);
-    empleadoRef.get()
-    .then(function(doc) {
-      if (doc.exists) {
-        // si el documento existe, se puede acceder al atributo "rol"
-        rol = doc.data().rol;
-        console.log("Rol del usuario con email " + mail + ": " + rol);
-      } else {
-        console.log("El usuario con email " + mail + " no fue encontrado en la base de datos.");
-      }
-    })
-    .catch(function(error) {
-      console.error("Error al obtener el rol del usuario: " + error);
-    });
-    return rol;
 
-  } */
+
   async function obtenerRolUsuarioPorEmail(mail) {
     var db = firebase.firestore();
     var empleadoRef = db.collection("empleados").doc(mail);
@@ -234,7 +196,10 @@
     
     docRef.set(date)
     .then(function() {
+      
       console.log("Cargo creado con éxito.");
+      $$("#configuracionesNuevoCargo").val("");
+      mostrarCargo();
     })
     .catch(function(error) {
       console.error("Error al crear el rol: " + error);
@@ -245,21 +210,83 @@
   function capitalizarPrimeraLetra(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  function mostrarUsuarios() {
+    var db = firebase.firestore();
+    var perRef = db.collection("empleados");
   
+    perRef.get()
+      .then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+          // Obtener los datos de cada documento
+          var id = doc.id;
+          var rol = doc.data().rol;
+          var nombre = doc.data().nombre;
   
-  function fnCerrarSesion() {
-      firebase.auth().signOut().then(function() {
-        console.log("Sesión cerrada con éxito.");
-        mainView.router.navigate("/index/");
-      }).catch(function(error) {
-        console.error("Error al cerrar sesión: " + error);
+          // Crear una nueva fila en la tabla con los datos
+          
+          var table = document.getElementById("configuracionesMostrarUsuarios").getElementsByTagName('tbody')[0];
+          var newRow = table.insertRow(table.rows.length);
+  
+          // Insertar celdas con los datos en la fila
+          var cellId = newRow.insertCell(0);
+          var cellRol = newRow.insertCell(1);
+          var cellNombre = newRow.insertCell(2);
+  
+          // Agregar los datos a las celdas
+          cellId.innerHTML = id;
+          cellRol.innerHTML = rol;
+          cellNombre.innerHTML = nombre;
+        });
+      })
+      .catch(function(error) {
+        console.log("Error al obtener usuarios: ", error);
       });
   }
 
-  function fnMostrarMenu(){
-    if (firebase.auth().currentUser) {
-      mainView.router.navigate("/menu"+rolUsuario+"/");
-    }else{
-      console.log("No ha iniciado sesion");
-    }
+  function mostrarCargo() {
+    var db = firebase.firestore();
+    var perRef = db.collection("usuarios");
+    perRef.get()
+      .then(function (querySnapshot) {
+        var ids = [];
+        querySnapshot.forEach(function (doc) {
+          ids.push(doc.id);
+        });
+        var listaAcordeon = "";
+        for (var i = 0; i < ids.length; i++) {
+          let cargoId = ids[i];
+          listaAcordeon += `<li>
+            <div class="item-content">
+              <div class="item-media"> <i class="icon icon-f7"></i>
+              </div>
+              <div class="item-inner">
+                <div class="item-title">${cargoId}</div>
+              </div>
+            </div>
+          </li>`;
+        }
+  
+        // Clear existing contents of the `<ul>` element
+        $$("#configuracionesMostrarCargo").html("");
+  
+        // Append the new `<li>` elements to the `<ul>` element
+        $$("#configuracionesMostrarCargo").append(listaAcordeon);
+      });
   }
+
+ /*  function mostrarCargo(){
+    var db = firebase.firestore();
+    var perRef = db.collection("usuarios");
+    perRef.get()
+    .then(function(querySnapshot){
+      var ids = [];
+      querySnapshot.docs().forEach(function(doc){
+        ids.push(doc.id);
+      })
+      // Actualizar la lista existente
+      $$("#configuracionesMostrarCargo").html(ids);
+    })
+  } */
+
+    
